@@ -106,6 +106,14 @@ client.connect((err) => {
       res.send(items);
     });
   });
+
+  app.delete("/deleteReview/:id", (req, res) => {
+    const id = ObjectId(req.params.id);
+    console.log(id);
+    AddReview.findOneAndDelete({ _id: id }).then((err, documents) =>
+      res.send(documents)
+    );
+  });
   ///
   app.delete("/deleteAdmin/:id", (req, res) => {
     const id = ObjectId(req.params.id);
@@ -121,6 +129,8 @@ client.connect((err) => {
       res.send(admins.length > 0);
     });
   });
+
+  ///
 
   ///admin-get-and__post
   app.post("/addAdmin", (req, res) => {
